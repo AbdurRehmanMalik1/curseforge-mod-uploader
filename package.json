@@ -3,7 +3,7 @@
   "displayName": "CurseForge Mod Uploader",
   "description": "Upload a whole release folder of Minecraft mod jars to CurseForge in one go. Loader, game version, Java version, display name and dependencies are filled in from each jar.",
   "version": "0.2.0",
-  "publisher": "AbdurRehmanMalik1",
+  "publisher": "AbdurRehmanMalik",
   "license": "MIT",
   "repository": {
     "type": "git",
