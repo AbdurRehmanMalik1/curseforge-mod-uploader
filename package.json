@@ -1,0 +1,134 @@
+{
+  "name": "curseforge-mod-uploader",
+  "displayName": "CurseForge Mod Uploader",
+  "description": "Upload a whole release folder of Minecraft mod jars to CurseForge in one go. Loader, game version, Java version, display name and dependencies are filled in from each jar.",
+  "version": "0.2.0",
+  "publisher": "AbdurRehmanMalik1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AbdurRehmanMalik1/curseforge-mod-uploader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AbdurRehmanMalik1/curseforge-mod-uploader/issues"
+  },
+  "homepage": "https://github.com/AbdurRehmanMalik1/curseforge-mod-uploader#readme",
+  "icon": "media/icon.png",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "minecraft",
+    "curseforge",
+    "mod",
+    "upload",
+    "release"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "curseforgeUpload.uploadFolder",
+        "title": "Upload Mods to CurseForge...",
+        "category": "CurseForge"
+      },
+      {
+        "command": "curseforgeUpload.setToken",
+        "title": "Set API Token",
+        "category": "CurseForge"
+      },
+      {
+        "command": "curseforgeUpload.clearToken",
+        "title": "Clear API Token",
+        "category": "CurseForge"
+      },
+      {
+        "command": "curseforgeUpload.clearHistory",
+        "title": "Forget Upload History",
+        "category": "CurseForge"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "curseforgeUpload.uploadFolder",
+          "when": "explorerResourceIsFolder || resourceExtname == .jar",
+          "group": "7_modification@99"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "CurseForge Mod Uploader",
+      "properties": {
+        "curseforgeUpload.projects": {
+          "type": "object",
+          "default": {},
+          "markdownDescription": "CurseForge project per mod, keyed by the mod part of the jar name (for `weaponry-fabric-2.5.0+1.20.1.jar` that is `weaponry`). Filled in automatically the first time you upload. Example: `{ \"weaponry\": { \"projectId\": 123456, \"name\": \"Weaponry Extended\", \"dependencies\": { \"fabric\": [\"fabric-api\"] } } }`"
+        },
+        "curseforgeUpload.filenamePattern": {
+          "type": "string",
+          "default": "^(?<mod>.+?)-(?<loader>neoforge|forge|fabric|quilt|rift|flint|risugami)-(?<version>[^+]+)[+](?<mc>.+)[.]jar$",
+          "markdownDescription": "Regular expression that reads a jar's file name. It needs the named groups `mod`, `loader`, `version` and `mc`. The default matches `<mod>-<loader>-<version>+<mc>.jar`."
+        },
+        "curseforgeUpload.displayNameTemplate": {
+          "type": "string",
+          "default": "{mod}-{loader}-{version}+{mc}.jar",
+          "markdownDescription": "Display name for each uploaded file. Placeholders: `{name}` (mod display name), `{mod}`, `{version}`, `{loader}`, `{Loader}`, `{mc}`, `{java}`, `{filename}`."
+        },
+        "curseforgeUpload.defaultReleaseType": {
+          "type": "string",
+          "enum": [
+            "release",
+            "beta",
+            "alpha"
+          ],
+          "default": "release",
+          "description": "Release type preselected in the upload form."
+        },
+        "curseforgeUpload.defaultDependencies": {
+          "type": "object",
+          "default": {},
+          "markdownDescription": "Required CurseForge dependencies (project slugs) per loader for mods that have no dependencies saved yet. Empty by default, so no dependencies are added unless you set them. Example: `{ \"fabric\": [\"fabric-api\"] }`."
+        },
+        "curseforgeUpload.environments": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Client",
+              "Server"
+            ]
+          },
+          "default": [],
+          "description": "Environment tags preselected on every file. Empty by default: pick Client and/or Server in the form (Environment, all files). CurseForge requires at least one."
+        },
+        "curseforgeUpload.addJavaVersion": {
+          "type": "boolean",
+          "default": true,
+          "description": "Preselect the Java version read from each jar's compiled classes. Each file can still be changed in the form."
+        },
+        "curseforgeUpload.apiBaseUrl": {
+          "type": "string",
+          "default": "https://minecraft.curseforge.com/api",
+          "description": "Base URL of the CurseForge upload API."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -watch -p .",
+    "test": "npm run compile && node --test out/test/core.test.js",
+    "package": "vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3.2.0",
+    "typescript": "^5.4.0"
+  }
+}

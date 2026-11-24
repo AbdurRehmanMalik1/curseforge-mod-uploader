@@ -1,0 +1,86 @@
+body {
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  color: var(--vscode-foreground);
+  background: var(--vscode-editor-background);
+  padding: 0 20px 90px;
+  max-width: 1400px;
+}
+h1 { font-size: 1.4em; margin: 18px 0 4px; }
+h2 { font-size: 1.05em; margin: 0 0 8px; }
+section { margin: 18px 0; }
+header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--vscode-panel-border); padding-bottom: 12px; }
+.path { font-family: var(--vscode-editor-font-family); font-size: 0.9em; word-break: break-all; }
+.actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.row { display: flex; gap: 12px; align-items: baseline; }
+.grid { display: flex; gap: 12px; flex-wrap: wrap; }
+.grid label { min-width: 180px; }
+.grow { flex: 1; min-width: 260px; }
+label { display: flex; flex-direction: column; gap: 4px; font-size: 0.9em; color: var(--vscode-descriptionForeground); }
+.project { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 10px; }
+.project label:first-of-type { width: 150px; }
+.mod-id { min-width: 200px; padding-bottom: 6px; }
+input[type="text"], select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--vscode-input-foreground);
+  background: var(--vscode-input-background);
+  border: 1px solid var(--vscode-input-border, var(--vscode-panel-border));
+  padding: 5px 7px;
+  border-radius: 2px;
+}
+textarea { width: 100%; box-sizing: border-box; font-family: var(--vscode-editor-font-family); resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: 1px solid var(--vscode-focusBorder); outline-offset: -1px; }
+input.needs { border-color: var(--vscode-inputValidation-warningBorder, #c90); }
+select.small { padding: 2px 4px; }
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--vscode-button-foreground);
+  background: var(--vscode-button-background);
+  border: none;
+  padding: 6px 14px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { background: var(--vscode-button-hoverBackground); }
+button.secondary { color: var(--vscode-button-secondaryForeground); background: var(--vscode-button-secondaryBackground); }
+button.secondary:hover:not(:disabled) { background: var(--vscode-button-secondaryHoverBackground); }
+button:disabled { opacity: 0.5; cursor: default; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--vscode-panel-border); vertical-align: top; }
+th { font-weight: 600; color: var(--vscode-descriptionForeground); white-space: nowrap; }
+td.file { font-family: var(--vscode-editor-font-family); font-size: 0.92em; }
+td.file a { color: var(--vscode-textLink-foreground); text-decoration: none; }
+td.file a:hover { text-decoration: underline; }
+.cb { width: 24px; }
+tr.disabled td { opacity: 0.6; }
+tbody tr:hover { background: var(--vscode-list-hoverBackground); }
+.muted { color: var(--vscode-descriptionForeground); }
+.good { color: var(--vscode-testing-iconPassed, #3a3); }
+.bad { color: var(--vscode-errorForeground); }
+.warn { color: var(--vscode-editorWarning-foreground, #c90); }
+.busy { color: var(--vscode-progressBar-background); }
+.stack { display: flex; flex-direction: column; gap: 3px; }
+.tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.tag { background: var(--vscode-badge-background); color: var(--vscode-badge-foreground); border-radius: 9px; padding: 0 7px; font-size: 0.85em; }
+footer {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 12px 20px;
+  background: var(--vscode-editor-background);
+  border-top: 1px solid var(--vscode-panel-border);
+}
+.status { flex: 1; }
+.status.ok { color: var(--vscode-testing-iconPassed, #3a3); }
+.status.error { color: var(--vscode-errorForeground); }
+label.inline { flex-direction: row; align-items: center; gap: 5px; color: var(--vscode-foreground); white-space: nowrap; }
+.envs { display: flex; gap: 10px; }
+.radios { display: flex; flex-direction: column; gap: 4px; font-size: 0.9em; }
+.radios .label { color: var(--vscode-descriptionForeground); }
+.bulk { align-items: flex-end; }
+.bulk label { min-width: 150px; }
+td select, td input[type="text"] { padding: 3px 5px; }
+td input.name { min-width: 260px; width: 100%; box-sizing: border-box; }
+select.needs { border-color: var(--vscode-inputValidation-warningBorder, #c90); }
